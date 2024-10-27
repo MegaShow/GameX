@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="zh-cn">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>井字棋</title>
+  </head>
+  <body>
+    <div class="game-root">
+      <div class="game-panel">
+        <div class="game-player game-player-next" data-player="x">
+          <img src="assets/x.svg" title="x" />
+          <img src="assets/player.svg" title="x role" />
+        </div>
+        <div class="game-player game-player-select" data-player="o" onclick="G.onChangePlayer()">
+          <img src="assets/o.svg" title="o" />
+          <img src="assets/computer.svg" title="o role" />
+        </div>
+      </div>
+      <div class="game-board-wrapper">
+        <table class="game-board">
+          <tr>
+            <td class="game-board-cell" data-index="0" onclick="G.onClickCell(event)"></td>
+            <td class="game-board-cell" data-index="1" onclick="G.onClickCell(event)"></td>
+            <td class="game-board-cell" data-index="2" onclick="G.onClickCell(event)"></td>
+          </tr>
+          <tr>
+            <td class="game-board-cell" data-index="3" onclick="G.onClickCell(event)"></td>
+            <td class="game-board-cell" data-index="4" onclick="G.onClickCell(event)"></td>
+            <td class="game-board-cell" data-index="5" onclick="G.onClickCell(event)"></td>
+          </tr>
+          <tr>
+            <td class="game-board-cell" data-index="6" onclick="G.onClickCell(event)"></td>
+            <td class="game-board-cell" data-index="7" onclick="G.onClickCell(event)"></td>
+            <td class="game-board-cell" data-index="8" onclick="G.onClickCell(event)"></td>
+          </tr>
+        </table>
+        <div class="game-board-line"></div>
+      </div>
+      <button class="game-btn-restart button" onclick="G.onClickRestart()" type="button">重新开始</button>
+      <div class="game-option">
+        <select aria-label="类型" name="type" onchange="G.onSelectType(event)">
+          <option selected value="basic">经典模式</option>
+          <option value="three_piece">三子模式</option>
+        </select>
+        <select aria-label="模式" name="mode" onchange="G.onSelectMode(event)">
+          <option selected value="pve">人机对战</option>
+          <option value="pvp">人人对战</option>
+        </select>
+        <select aria-label="难度" name="diifficulty" onchange="G.onSelectDifficulty(event)">
+          <option selected value="easy">简单难度</option>
+          <option value="hard">困难难度</option>
+        </select>
+      </div>
+      <div class="game-desc">
+        <a href="https://github.com/megashow/gamex/tree/master/tictactoe" target="_blank">[TicTacToe]</a>
+        <span
+          class="game-rule"
+          data-tooltip="1. 经典模式: 连成直线即可获胜;&#10;2. 三子模式: 棋盘上每个玩家最多持有三个棋子, 超过三个棋子时会收回最早的棋子."
+        >
+          <span>[规则]</span>
+        </span>
+      </div>
+      <div class="game-winner"><img src="assets/x.svg" title="winner" /><span>获胜</span></div>
+      <div class="game-winner-draw"><span>平局</span></div>
+    </div>
+  </body>
+</html>
