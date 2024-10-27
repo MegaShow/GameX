@@ -45,6 +45,8 @@ class SceneGame {
   onChangePlayer() {
     if (this.isPlaying) {
       return;
+    } else if (this.mode === 'pvp') {
+      return;
     }
     const players = document.querySelectorAll<HTMLElement>('.game-player');
     players[0].lastElementChild?.setAttribute('src', svgComputer);

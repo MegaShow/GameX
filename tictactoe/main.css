@@ -94,19 +94,6 @@ select:hover {
   vertical-align: middle;
   width: 96px;
 }
-.game-board-cell[data-row='0'] {
-  border-top: none;
-}
-.game-board-cell[data-row='2'] {
-  border-bottom: none;
-}
-.game-board-cell[data-col='0'] {
-  border-left: none;
-}
-.game-board-cell[data-col='2'] {
-  border-right: none;
-}
-
 .game-board-cell img {
   height: 75%;
   transition: 1s;
