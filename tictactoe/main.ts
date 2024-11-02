@@ -29,15 +29,15 @@ class SceneGame {
       console.log('bot finish predict, use %dms', end - start);
     }
 
-    // 电脑回合至少保持500ms
+    // 电脑回合至少保持 800ms
     const botPlay = () => {
       this.chess.set(this.chess.getNextPlayer(), predictIndex);
       this.render();
     };
-    if (first || end - start > 500) {
+    if (first || end - start > 800) {
       botPlay();
     } else {
-      setTimeout(botPlay, 500 - (end - start));
+      setTimeout(botPlay, 800 - (end - start));
     }
   }
 
@@ -189,25 +189,30 @@ class SceneGame {
           player.classList.remove('game-player-select');
         }
       }
-    } else if (winner === 'x' || winner === 'o') {
-      const winPieces = this.chess.getWinPieces();
-      const line = document.querySelector<HTMLElement>('.game-board-line');
-      if (line) {
-        line.dataset.case = winPieces.join(',');
-        line.dataset.line = 'diagonal';
-        if (winPieces[0] + 1 === winPieces[1] && winPieces[0] + 2 === winPieces[2]) {
-          line.dataset.line = 'row';
-        } else if (winPieces[0] + 3 === winPieces[1] && winPieces[0] + 6 === winPieces[2]) {
-          line.dataset.line = 'col';
-        }
-        line.classList.add('game-board-line-show');
-      }
-      const winnerDiv = document.querySelector('.game-winner');
-      winnerDiv?.classList.add('game-winner-show');
-      winnerDiv?.firstElementChild?.setAttribute('src', winner === 'x' ? svgX : svgO);
     } else {
-      // 平局
-      document.querySelector('.game-winner-draw')?.classList.add('game-winner-show');
+      // 延迟 500ms 后执行
+      setTimeout(() => {
+        if (winner === 'x' || winner === 'o') {
+          const winPieces = this.chess.getWinPieces();
+          const line = document.querySelector<HTMLElement>('.game-board-line');
+          if (line) {
+            line.dataset.case = winPieces.join(',');
+            line.dataset.line = 'diagonal';
+            if (winPieces[0] + 1 === winPieces[1] && winPieces[0] + 2 === winPieces[2]) {
+              line.dataset.line = 'row';
+            } else if (winPieces[0] + 3 === winPieces[1] && winPieces[0] + 6 === winPieces[2]) {
+              line.dataset.line = 'col';
+            }
+            line.classList.add('game-board-line-show');
+          }
+          const winnerDiv = document.querySelector('.game-winner');
+          winnerDiv?.classList.add('game-winner-show');
+          winnerDiv?.firstElementChild?.setAttribute('src', winner === 'x' ? svgX : svgO);
+        } else {
+          // 平局
+          document.querySelector('.game-winner-draw')?.classList.add('game-winner-show');
+        }
+      }, 500);
     }
   }
 }

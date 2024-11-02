@@ -38,6 +38,18 @@ select:hover {
   border-color: #4096ff;
 }
 
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
 .game-root {
   margin: 0 auto;
   padding: 16px;
@@ -95,8 +107,8 @@ select:hover {
   width: 96px;
 }
 .game-board-cell img {
+  animation: pulse 0.4s ease-in;
   height: 75%;
-  transition: 1s;
   width: 75%;
 }
 
@@ -120,7 +132,7 @@ select:hover {
 }
 .game-board-line[data-line='row'] {
   left: 24px;
-  top: 52px;
+  top: 54px;
 }
 .game-board-line[data-case='0,4,8'] {
   left: 24px;
@@ -140,13 +152,13 @@ select:hover {
   width: 436px;
 }
 .game-board-line[data-case='2,5,8'] {
-  transform: translateX(234px);
+  transform: translateX(235px);
 }
 .game-board-line[data-case='3,4,5'] {
   transform: translateY(117px);
 }
 .game-board-line[data-case='6,7,8'] {
-  transform: translateY(234px);
+  transform: translateY(235px);
 }
 
 .game-btn-restart {
