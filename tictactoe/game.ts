@@ -37,6 +37,11 @@ export class Chess {
     return this.nextPlayer;
   }
 
+  /** 获取玩法 */
+  getPlayType(): PlayType {
+    return this.playType;
+  }
+
   /** 获取胜利棋子 */
   getWinPieces(): number[] {
     return this.winPieces;

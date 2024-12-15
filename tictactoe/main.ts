@@ -172,6 +172,15 @@ class SceneGame {
       } else if (cell.firstElementChild) {
         cell.removeChild(cell.firstElementChild);
       }
+
+      if (
+        this.chess.getPlayType() === 'three_piece' &&
+        ((board.x.length === 3 && board.x[0] === index) || (board.o.length === 3 && board.o[0] === index))
+      ) {
+        cell.firstElementChild?.classList.add('game-board-cell-disappear');
+      } else {
+        cell.firstElementChild?.classList.remove('game-board-cell-disappear');
+      }
     }
 
     // 更新回合展示, 如果存在胜利不再更新
@@ -192,6 +201,10 @@ class SceneGame {
     } else {
       // 延迟 500ms 后执行
       setTimeout(() => {
+        for (const cell of cells) {
+          cell.firstElementChild?.classList.remove('game-board-cell-disappear');
+        }
+
         if (winner === 'x' || winner === 'o') {
           const winPieces = this.chess.getWinPieces();
           const line = document.querySelector<HTMLElement>('.game-board-line');

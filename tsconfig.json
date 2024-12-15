@@ -5,6 +5,7 @@
     "lib": ["ES2022", "DOM", "DOM.Iterable"],
     "module": "ESNext",
     "skipLibCheck": true,
+    "outDir": "./dist",
 
     /* Bundler mode */
     "moduleResolution": "bundler",
@@ -14,9 +15,11 @@
 
     /* Linting */
     "strict": true,
+    "allowJs": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true
   },
-  "include": ["./"]
+  "include": ["./"],
+  "exclude": ["dist", "node_modules"]
 }

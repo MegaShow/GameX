@@ -111,6 +111,9 @@ select:hover {
   height: 75%;
   width: 75%;
 }
+.game-board-cell-disappear {
+  opacity: 0.4;
+}
 
 .game-board-line {
   background-color: #fc11b4;

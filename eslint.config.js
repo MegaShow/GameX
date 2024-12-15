@@ -1,21 +1,31 @@
-module.exports = {
-  root: true,
-  env: { browser: true, es2022: true },
+import js from '@eslint/js';
+import prettier from 'eslint-config-prettier';
+import importPlugin from 'eslint-plugin-import';
+import globals from 'globals';
+import tseslint from 'typescript-eslint';
+
+export default tseslint.config({
   extends: [
-    'eslint:recommended',
-    'plugin:@typescript-eslint/recommended-type-checked',
-    'plugin:@typescript-eslint/stylistic-type-checked',
-    'prettier',
+    js.configs.recommended,
+    tseslint.configs.recommendedTypeChecked,
+    tseslint.configs.stylisticTypeChecked,
+    prettier,
   ],
-  ignorePatterns: ['dist', '.eslintrc.cjs'],
-  parser: '@typescript-eslint/parser',
-  parserOptions: {
+  files: ['**/*.{js,ts}'],
+  ignores: ['dist/**'],
+  languageOptions: {
     ecmaVersion: 'latest',
     sourceType: 'module',
-    project: ['./tictactoe/tsconfig.json'],
-    tsconfigRootDir: __dirname,
+    globals: globals.browser,
+    parserOptions: {
+      projectService: true,
+      tsconfigRootDir: import.meta.dirname,
+    },
   },
-  plugins: ['import'],
+  plugins: {
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+    import: importPlugin,
+  },
   rules: {
     'array-callback-return': ['error', { checkForEach: true }],
     'no-await-in-loop': 'error',
@@ -46,4 +56,4 @@ module.exports = {
     ],
     '@typescript-eslint/no-misused-promises': ['error', { checksVoidReturn: false }],
   },
-};
+});
